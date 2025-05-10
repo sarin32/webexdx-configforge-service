@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+import { TokenSchema } from '../../modals/token.modal.interface';
 
 export interface CreateTokenParams {
   expiresOn: Date;
@@ -14,4 +15,16 @@ export interface TokenRepositoryInterface {
   revokeToken(tokenId: ObjectId): Promise<void>;
 
   isValidToken(token: string): Promise<boolean>;
+
+  getToken(tokenId: ObjectId): Promise<TokenSchema>;
+
+  getEnvironmentTokens(environmentId: ObjectId): Promise<TokenSchema[]>;
+
+  getUserTokens(userId: ObjectId): Promise<TokenSchema[]>;
+
+  updateToken(tokenId: ObjectId, update: Partial<TokenSchema>): Promise<void>;
+
+  deleteToken(tokenId: ObjectId): Promise<void>;
+
+  getActiveTokens(environmentId: ObjectId): Promise<TokenSchema[]>;
 }

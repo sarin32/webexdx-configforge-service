@@ -59,6 +59,51 @@ class TokenRepository implements TokenRepositoryInterface {
 
     return tokenData ? true : false;
   }
+
+  async getToken(tokenId: ObjectId) {
+    const token = await this.modal.findOne({ _id: tokenId });
+    if (!token) {
+      throw new Error('Token not found');
+    }
+    return token;
+  }
+
+  async getEnvironmentTokens(environmentId: ObjectId) {
+    return await this.modal.find({ environmentId }).toArray();
+  }
+
+  async getUserTokens(userId: ObjectId) {
+    return await this.modal.find({ userId }).toArray();
+  }
+
+  async updateToken(tokenId: ObjectId, update: Partial<TokenSchema>) {
+    const response = await this.modal.updateOne(
+      { _id: tokenId },
+      { $set: update }
+    );
+
+    if (!response.acknowledged || response.modifiedCount !== 1) {
+      throw new Error('Could not update token details');
+    }
+  }
+
+  async deleteToken(tokenId: ObjectId) {
+    const response = await this.modal.deleteOne({ _id: tokenId });
+
+    if (!response.acknowledged || response.deletedCount !== 1) {
+      throw new Error('Could not delete token');
+    }
+  }
+
+  async getActiveTokens(environmentId: ObjectId) {
+    return await this.modal
+      .find({
+        environmentId,
+        isActive: true,
+        expiresOn: { $gt: new Date() },
+      })
+      .toArray();
+  }
 }
 
 export const tokenRepository = new TokenRepository();
