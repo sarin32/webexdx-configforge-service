@@ -18,3 +18,6 @@ export const DATABASE_SETTINGS = {
     new Binary(Buffer.from(env.DATABASE_ENCRYPTION_KEY_BASE64!, 'base64'), 4),
   ],
 };
+
+// Token validation settings (needed for auth service integration)
+export const SECRET_TOKEN = env.JWT_SECRET_TOKEN!;

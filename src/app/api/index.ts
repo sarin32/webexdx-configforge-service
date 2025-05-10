@@ -2,7 +2,6 @@ import { Router } from '@webexdx/koa-wrap';
 import environmentRoute from './environment/environment.route';
 import projectRoute from './project/project.route';
 import variableRoute from './variable/variable.route';
-import userRoute from './user/user.route';
 import { tokenMiddleware } from '../middlewares';
 
 const router: Router = [
@@ -20,10 +19,6 @@ const router: Router = [
     path: '/variable',
     middlewares: tokenMiddleware,
     children: variableRoute,
-  },
-  {
-    path: '/user',
-    children: userRoute,
-  },
+  }
 ];
 export default router;

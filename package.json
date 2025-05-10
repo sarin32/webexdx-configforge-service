@@ -2,9 +2,9 @@
   "scripts": {
     "lint": "eslint .",
     "fix": "eslint --fix .",
-    "build:dev": "tsc",
+    "build": "tsc",
+    "start": "nodemon src/index.ts",
     "build:prod": "tsc",
-    "start:dev": "nodemon src/index.ts",
     "start:prod": "node src/index.js"
   },
   "engines": {
@@ -20,6 +20,8 @@
     "@types/koa__cors": "^5.0.0",
     "@types/koa__router": "^12.0.4",
     "@types/koa-logger": "^3.1.5",
+    "@types/mongodb": "^4.0.6",
+    "@types/node": "^22.15.17",
     "@types/nodemailer": "^6.4.17",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
