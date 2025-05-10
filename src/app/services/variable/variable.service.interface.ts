@@ -25,7 +25,6 @@ export interface UpdateVariableParams {
   value?: string;
 }
 
-
 export interface HasAccessParams {
   roleId: ObjectId;
 }
@@ -41,10 +40,10 @@ export interface VariableServiceInterface {
   ): Promise<GetVariableListObject[]>;
 
   updateVariable(params: UpdateVariableParams): Promise<void>;
-  
+
   deleteVariable(params: DeleteVariableParams): Promise<void>;
 
   hasWriteAccessToVariables(params: HasAccessParams): Promise<boolean>;
-   
+
   hasDeleteAccessToVariables(params: HasAccessParams): Promise<boolean>;
 }

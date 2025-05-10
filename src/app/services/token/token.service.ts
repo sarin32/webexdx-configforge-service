@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongodb';
 import { tokenRepository } from '../../database';
-import { BadRequestError } from '../../errors';
 import { generateToken } from '../../utils/token';
 
 class TokenService {
@@ -34,17 +33,35 @@ class TokenService {
     return true;
   }
 
-  async hasReadAccessToToken({ tokenId, userId }: { tokenId: ObjectId; userId: string }) {
+  async hasReadAccessToToken({
+    tokenId,
+    userId,
+  }: {
+    tokenId: ObjectId;
+    userId: string;
+  }) {
     // TODO: Implement token access control
     return true;
   }
 
-  async hasUpdateAccessToToken({ tokenId, userId }: { tokenId: ObjectId; userId: string }) {
+  async hasUpdateAccessToToken({
+    tokenId,
+    userId,
+  }: {
+    tokenId: ObjectId;
+    userId: string;
+  }) {
     // TODO: Implement token access control
     return true;
   }
 
-  async hasDeleteAccessToToken({ tokenId, userId }: { tokenId: ObjectId; userId: string }) {
+  async hasDeleteAccessToToken({
+    tokenId,
+    userId,
+  }: {
+    tokenId: ObjectId;
+    userId: string;
+  }) {
     // TODO: Implement token access control
     return true;
   }
@@ -77,11 +94,23 @@ class TokenService {
     return await this.repository.getToken(tokenId);
   }
 
-  async getEnvironmentTokens({ userId, environmentId }: { userId: string; environmentId: ObjectId }) {
+  async getEnvironmentTokens({
+    userId,
+    environmentId,
+  }: {
+    userId: string;
+    environmentId: ObjectId;
+  }) {
     return await this.repository.getEnvironmentTokens(environmentId);
   }
 
-  async getUserTokens({ userId, targetUserId }: { userId: string; targetUserId: ObjectId }) {
+  async getUserTokens({
+    userId,
+    targetUserId,
+  }: {
+    userId: string;
+    targetUserId: ObjectId;
+  }) {
     return await this.repository.getUserTokens(targetUserId);
   }
 
@@ -110,15 +139,33 @@ class TokenService {
     await this.repository.updateToken(tokenId, update);
   }
 
-  async deleteToken({ userId, tokenId }: { userId: string; tokenId: ObjectId }) {
+  async deleteToken({
+    userId,
+    tokenId,
+  }: {
+    userId: string;
+    tokenId: ObjectId;
+  }) {
     await this.repository.deleteToken(tokenId);
   }
 
-  async deactivateToken({ userId, tokenId }: { userId: string; tokenId: ObjectId }) {
+  async deactivateToken({
+    userId,
+    tokenId,
+  }: {
+    userId: string;
+    tokenId: ObjectId;
+  }) {
     return await this.repository.revokeToken(tokenId);
   }
 
-  async getActiveTokens({ userId, environmentId }: { userId: string; environmentId: ObjectId }) {
+  async getActiveTokens({
+    userId,
+    environmentId,
+  }: {
+    userId: string;
+    environmentId: ObjectId;
+  }) {
     return await this.repository.getActiveTokens(environmentId);
   }
 }

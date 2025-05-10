@@ -52,14 +52,14 @@ class VariableRepository implements VariableRepositoryInterface {
     key,
     value,
   }: UpdateVariableParams): Promise<void> {
-    const updateData: {key?: string; value?: string} = {};
+    const updateData: { key?: string; value?: string } = {};
 
     if (key) updateData.key = key;
     if (value) updateData.value = value;
 
     const response = await this.modal.updateOne(
-      {_id: variableId},
-      {$set: updateData}
+      { _id: variableId },
+      { $set: updateData }
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
@@ -67,8 +67,8 @@ class VariableRepository implements VariableRepositoryInterface {
     }
   }
 
-  async deleteVariable({variableId}: DeleteVariableParams): Promise<void> {
-    const response = await this.modal.deleteOne({_id: variableId});
+  async deleteVariable({ variableId }: DeleteVariableParams): Promise<void> {
+    const response = await this.modal.deleteOne({ _id: variableId });
     if (!response.acknowledged || response.deletedCount !== 1) {
       throw new Error('Failed to delete variable data');
     }

@@ -7,7 +7,7 @@ import {
   updateToken,
   deleteToken,
   deactivateToken,
-  getActiveTokens
+  getActiveTokens,
 } from './token.controller';
 import { HTTPMethod } from '@webexdx/koa-wrap/build/src/router/interface';
 
@@ -51,7 +51,7 @@ const router: Router = [
     method: HTTPMethod.POST,
     path: '/getActiveTokens',
     handler: getActiveTokens,
-  }
+  },
 ];
 
-export default router; 
+export default router;

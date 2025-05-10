@@ -25,6 +25,6 @@ const router: Router = [
     path: '/tokens',
     middlewares: tokenMiddleware,
     children: tokenRoute,
-  }
+  },
 ];
 export default router;
