@@ -16,8 +16,6 @@ RUN npm install
 # Copy full source code
 COPY . .
 
-RUN cd node_modules ; ls -al; cd ..
-
 # Expose the development port
 EXPOSE 3000
 
