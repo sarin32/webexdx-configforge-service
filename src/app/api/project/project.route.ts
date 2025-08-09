@@ -1,11 +1,10 @@
-import { Router } from '@webexdx/koa-wrap';
+import { Router, HTTPMethod } from '@webexdx/koa-wrap/server';
 import {
   createProject,
   getProjectDataInDetail,
   getProjectlist,
   updateProjectDetails,
 } from './project.controller';
-import { HTTPMethod } from '@webexdx/koa-wrap/build/src/router/interface';
 
 const router: Router = [
   {

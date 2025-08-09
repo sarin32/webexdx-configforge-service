@@ -1,7 +1,7 @@
 import { Context } from 'koa';
 import { projectService } from '../../services/project/project.service';
 import { validateObject } from '../../utils/schema-validator';
-import { BadRequestError, ForbiddenError } from '../../errors';
+import { BadRequestError, ForbiddenError } from '@webexdx/koa-wrap/errors';
 import { objectId } from '../../utils/data-type-util';
 import { createProjectSchema, updateProjectSchema } from './project.schema';
 

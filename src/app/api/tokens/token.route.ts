@@ -1,4 +1,4 @@
-import { Router } from '@webexdx/koa-wrap';
+import { Router, HTTPMethod } from '@webexdx/koa-wrap/server';
 import {
   createToken,
   getToken,
@@ -9,7 +9,6 @@ import {
   deactivateToken,
   getActiveTokens,
 } from './token.controller';
-import { HTTPMethod } from '@webexdx/koa-wrap/build/src/router/interface';
 
 const router: Router = [
   {

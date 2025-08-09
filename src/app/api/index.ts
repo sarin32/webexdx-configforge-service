@@ -1,29 +1,29 @@
-import { Router } from '@webexdx/koa-wrap';
+import { Router } from '@webexdx/koa-wrap/server';
 import environmentRoute from './environment/environment.route';
 import projectRoute from './project/project.route';
 import variableRoute from './variable/variable.route';
 import tokenRoute from './tokens/token.route';
-import { tokenMiddleware } from '../middlewares';
+import { authMiddleware } from '../middlewares/auth.middleware';
 
 const router: Router = [
   {
     path: '/environment',
-    middlewares: tokenMiddleware,
+    middlewares: authMiddleware,
     children: environmentRoute,
   },
   {
     path: '/project',
-    middlewares: tokenMiddleware,
+    middlewares: authMiddleware,
     children: projectRoute,
   },
   {
     path: '/variable',
-    middlewares: tokenMiddleware,
+    middlewares: authMiddleware,
     children: variableRoute,
   },
   {
     path: '/tokens',
-    middlewares: tokenMiddleware,
+    middlewares: authMiddleware,
     children: tokenRoute,
   },
 ];

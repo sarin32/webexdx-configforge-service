@@ -13,10 +13,6 @@ export const NODE_ENV = env.NODE_ENV;
 
 export const DATABASE_SETTINGS = {
   URL: env.DATABASE_URL!,
-  MASTER_KEY: Buffer.from(env.DATABASE_MASTER_KEY!, 'hex')!,
-  KEY_BASE64: [
-    new Binary(Buffer.from(env.DATABASE_ENCRYPTION_KEY_BASE64!, 'base64'), 4),
-  ],
 };
 
 // Token validation settings (needed for auth service integration)

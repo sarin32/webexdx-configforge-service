@@ -1,10 +1,9 @@
-import { HTTPMethod } from '@webexdx/koa-wrap/build/src/router/interface';
+import { Router, HTTPMethod } from '@webexdx/koa-wrap/server';
 import {
   createVariable,
   deleteVariable,
   updateVariable,
 } from './variable.controller';
-import { Router } from '@webexdx/koa-wrap';
 
 const router: Router = [
   {

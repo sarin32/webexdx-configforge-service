@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import { validateObject } from '../../utils/schema-validator';
-import { BadRequestError } from '../../errors';
+import { BadRequestError } from '@webexdx/koa-wrap/errors';
 import { variableService } from '../../services/variable/variable.service';
 import { objectId } from '../../utils/data-type-util';
 import { createVariableSchema, updateVariableSchema } from './variable.schema';

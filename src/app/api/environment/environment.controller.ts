@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { BadRequestError, ForbiddenError } from '../../errors';
+import { BadRequestError, ForbiddenError } from '@webexdx/koa-wrap/errors';
 import { environmentService } from '../../services/environment/environment.service';
 import {
   validateObject,
