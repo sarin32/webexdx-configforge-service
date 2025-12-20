@@ -1,6 +1,6 @@
-import { ObjectId, WithId } from 'mongodb';
-import { ProjectAccessLevel } from '../../../config';
-import { ProjectSchema } from '../../modals/project.modal.interface';
+import type { ObjectId, WithId } from 'mongodb';
+import type { ProjectAccessLevel } from '../../../config';
+import type { ProjectSchema } from '../../modals/project.modal.interface';
 
 export interface CreateProjectParams {
   name: string;
@@ -64,6 +64,6 @@ export interface ProjectRepositoryInterface {
   updateProject(params: UpdateProjectParams): Promise<void>;
 
   getAccessLevelToProject(
-    params: GetAccessLevelToProjectParams
+    params: GetAccessLevelToProjectParams,
   ): Promise<GetAccessLevelToProjectResult>;
 }

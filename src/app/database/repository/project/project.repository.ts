@@ -1,5 +1,7 @@
+import { ProjectAccessLevel } from '../../../config';
 import { projectModal } from '../../modals';
-import {
+import type { ProjectUser } from '../../modals/project.modal.interface';
+import type {
   CreateProjectParams,
   GetAccessLevelToProjectParams,
   GetAccessLevelToProjectResult,
@@ -12,8 +14,6 @@ import {
   UpdateProjectAccessParams,
   UpdateProjectParams,
 } from './project.repository.interface';
-import { ProjectUser } from '../../modals/project.modal.interface';
-import { ProjectAccessLevel } from '../../../config';
 
 class ProjectRepository implements ProjectRepositoryInterface {
   private modal = projectModal;
@@ -49,7 +49,7 @@ class ProjectRepository implements ProjectRepositoryInterface {
 
     const response = await this.modal.updateOne(
       { _id: projectId },
-      { users: { $push: projectUser } }
+      { users: { $push: projectUser } },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
@@ -64,7 +64,7 @@ class ProjectRepository implements ProjectRepositoryInterface {
   }: UpdateProjectAccessParams) {
     const response = await this.modal.updateOne(
       { _id: projectId, 'users.userId': userId },
-      { $set: { 'users.$.accessLevel': updatedAccess } }
+      { $set: { 'users.$.accessLevel': updatedAccess } },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
@@ -80,11 +80,11 @@ class ProjectRepository implements ProjectRepositoryInterface {
         {
           users: { $elemMatch: { userId: userId } },
         },
-        { projection: { createdAt: 1, environmentCount: 1, name: 1 } }
+        { projection: { createdAt: 1, environmentCount: 1, name: 1 } },
       )
       .toArray();
 
-    return list.map(elem => {
+    return list.map((elem) => {
       return {
         projectId: elem._id,
         createdAt: elem.createdAt,
@@ -97,7 +97,7 @@ class ProjectRepository implements ProjectRepositoryInterface {
   async updateProject({ projectId, name }: UpdateProjectParams): Promise<void> {
     const response = await this.modal.updateOne(
       { _id: projectId },
-      { $set: { name: name } }
+      { $set: { name: name } },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
@@ -112,9 +112,9 @@ class ProjectRepository implements ProjectRepositoryInterface {
     return (
       await this.modal.findOne(
         { _id: projectId, 'users.userId': userId },
-        { projection: { users: 1 } }
+        { projection: { users: 1 } },
       )
-    )?.users.find(elem => {
+    )?.users.find((elem) => {
       return elem.userId.toString() === userId.toString();
     })?.accessLevel;
   }

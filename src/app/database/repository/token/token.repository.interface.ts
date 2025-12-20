@@ -1,5 +1,5 @@
-import { ObjectId } from 'mongodb';
-import { TokenSchema } from '../../modals/token.modal.interface';
+import type { ObjectId } from 'mongodb';
+import type { TokenSchema } from '../../modals/token.modal.interface';
 
 export interface CreateTokenParams {
   expiresOn: Date;

@@ -1,13 +1,13 @@
-import { Context } from 'koa';
-import { tokenService } from '../../services/token/token.service';
-import { validateObject } from '../../utils/schema-validator';
 import { BadRequestError, ForbiddenError } from '@webexdx/koa-wrap/errors';
+import type { Context } from 'koa';
+import { tokenService } from '../../services/token/token.service';
 import { objectId } from '../../utils/data-type-util';
+import { validateObject } from '../../utils/schema-validator';
 import {
   createTokenSchema,
-  updateTokenSchema,
   getEnvironmentTokensSchema,
   getUserTokensSchema,
+  updateTokenSchema,
 } from './token.schema';
 
 export async function createToken(ctx: Context) {
@@ -58,7 +58,7 @@ export async function getToken(ctx: Context) {
 export async function getEnvironmentTokens(ctx: Context) {
   const { error, value } = validateObject<{ environmentId: string }>(
     getEnvironmentTokensSchema,
-    ctx.request.body
+    ctx.request.body,
   );
 
   if (error) throw new BadRequestError(error.message);
@@ -79,7 +79,7 @@ export async function getEnvironmentTokens(ctx: Context) {
 export async function getUserTokens(ctx: Context) {
   const { error, value } = validateObject<{ userId: string }>(
     getUserTokensSchema,
-    ctx.request.body
+    ctx.request.body,
   );
 
   if (error) throw new BadRequestError(error.message);
@@ -176,7 +176,7 @@ export async function deactivateToken(ctx: Context) {
 export async function getActiveTokens(ctx: Context) {
   const { error, value } = validateObject<{ environmentId: string }>(
     getEnvironmentTokensSchema,
-    ctx.request.body
+    ctx.request.body,
   );
 
   if (error) throw new BadRequestError(error.message);

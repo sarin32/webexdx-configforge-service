@@ -1,6 +1,6 @@
-import { ObjectId } from '@i/common.interface';
-import { VariableSchema } from '../../modals/variable.modal.interface';
-import { WithId } from 'mongodb';
+import type { ObjectId } from '@i/common.interface';
+import type { WithId } from 'mongodb';
+import type { VariableSchema } from '../../modals/variable.modal.interface';
 
 export interface CreateVariableParams {
   overrideUserId?: ObjectId;
@@ -33,7 +33,7 @@ export interface VariableRepositoryInterface {
   createVariable(params: CreateVariableParams): Promise<CreateVariableResult>;
 
   getVariableList(
-    params: GetVariableListParams
+    params: GetVariableListParams,
   ): Promise<GetVariableListObject[]>;
 
   updateVariable(params: UpdateVariableParams): Promise<void>;

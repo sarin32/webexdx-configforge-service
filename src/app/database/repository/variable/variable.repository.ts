@@ -1,14 +1,14 @@
-import {
+import { variableModal } from '../../modals';
+import type { VariableSchema } from '../../modals/variable.modal.interface';
+import type {
   CreateVariableParams,
   CreateVariableResult,
+  DeleteVariableParams,
   GetVariableListObject,
   GetVariableListParams,
   UpdateVariableParams,
   VariableRepositoryInterface,
-  DeleteVariableParams,
 } from './variable.repository.interface';
-import { variableModal } from '../../modals';
-import { VariableSchema } from '../../modals/variable.modal.interface';
 
 class VariableRepository implements VariableRepositoryInterface {
   private modal = variableModal;
@@ -59,7 +59,7 @@ class VariableRepository implements VariableRepositoryInterface {
 
     const response = await this.modal.updateOne(
       { _id: variableId },
-      { $set: updateData }
+      { $set: updateData },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {

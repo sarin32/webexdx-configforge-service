@@ -1,19 +1,19 @@
+import { ProjectAccessLevel } from '../../config';
 import { projectRepository } from '../../database';
-import {
+import { environmentService } from '../environment/environment.service';
+import { rolesService } from '../roles/roles.service';
+import { variableService } from '../variable/variable.service';
+import type {
   CreateProjectParams,
-  GetProjectParams,
-  GetProjectListResult,
-  ProjectServiceInterface,
-  UpdateProjectParams,
-  HasAccessParams,
-  HasAccessToProjectParams,
   GetProjectDataInDetailParams,
   GetProjectDataInDetailResult,
+  GetProjectListResult,
+  GetProjectParams,
+  HasAccessParams,
+  HasAccessToProjectParams,
+  ProjectServiceInterface,
+  UpdateProjectParams,
 } from './project.service.interface';
-import { rolesService } from '../roles/roles.service';
-import { ProjectAccessLevel } from '../../config';
-import { environmentService } from '../environment/environment.service';
-import { variableService } from '../variable/variable.service';
 
 class ProjectService implements ProjectServiceInterface {
   private readonly repository = projectRepository;
@@ -48,7 +48,7 @@ class ProjectService implements ProjectServiceInterface {
     if (!access) return false;
 
     return [ProjectAccessLevel.ADMIN, ProjectAccessLevel.WRITE].includes(
-      access
+      access,
     );
   }
 
@@ -118,7 +118,7 @@ class ProjectService implements ProjectServiceInterface {
       result.environments.push({
         environmentName: environment.name,
         id: environment._id,
-        variables: variables.map(variable => {
+        variables: variables.map((variable) => {
           const isOverride =
             (variable.overrideUserId &&
               variable.overrideUserId.toString() === userId.toString()) ||

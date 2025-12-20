@@ -1,5 +1,5 @@
 import { environmentModal } from '../../modals';
-import {
+import type {
   CreateEnvironmentParams,
   EnvironmentRepositoryInterface,
   GetEnvironmentListParams,

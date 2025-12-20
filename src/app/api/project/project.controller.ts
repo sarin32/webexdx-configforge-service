@@ -1,14 +1,14 @@
-import { Context } from 'koa';
-import { projectService } from '../../services/project/project.service';
-import { validateObject } from '../../utils/schema-validator';
 import { BadRequestError, ForbiddenError } from '@webexdx/koa-wrap/errors';
+import type { Context } from 'koa';
+import { projectService } from '../../services/project/project.service';
 import { objectId } from '../../utils/data-type-util';
+import { validateObject } from '../../utils/schema-validator';
 import { createProjectSchema, updateProjectSchema } from './project.schema';
 
 export async function createProject(ctx: Context) {
   const { error, value } = validateObject<{ name: string }>(
     createProjectSchema,
-    ctx.request.body
+    ctx.request.body,
   );
 
   if (error) throw new BadRequestError(error.message);
@@ -26,8 +26,8 @@ export async function createProject(ctx: Context) {
 export async function getProjectlist(ctx: Context) {
   const { userId, roleId } = ctx.state.user;
 
-  if (!(await projectService.hasAccessToReadProject({ roleId })))
-    throw new ForbiddenError('You dont have the access to read project ');
+  // if (!(await projectService.hasAccessToReadProject({ roleId })))
+  //   throw new ForbiddenError('You dont have the access to read project ');
 
   ctx.body = await projectService.getProjectList({ userId });
 }

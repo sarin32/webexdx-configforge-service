@@ -1,5 +1,5 @@
-import { ObjectId } from '@i/common.interface';
-import {
+import type { ObjectId } from '@i/common.interface';
+import type {
   GetRoleInfoParams as GetRoleInfoRepositoryParams,
   GetRoleInfoResult as GetRoleInfoRepositoryResult,
   ModuleName,
@@ -21,6 +21,6 @@ export interface RoleServiceInterface {
   getRoleInfo(params: GetRoleInfoParams): Promise<GetRoleInfoResult>;
 
   getModuleRoleInfo<ModuleNameT extends ModuleName>(
-    params: GetModulePermissionInfoParams<ModuleNameT>
+    params: GetModulePermissionInfoParams<ModuleNameT>,
   ): Promise<GetModulePermissionInfoResult<ModuleNameT>>;
 }

@@ -3,7 +3,7 @@ import { SECRET_TOKEN } from '../config/config';
 
 export async function generateSignature(
   payload: object,
-  expiresIn: number
+  expiresIn: number,
 ): Promise<string> {
   return await jwt.sign(payload as object, SECRET_TOKEN, { expiresIn });
 }

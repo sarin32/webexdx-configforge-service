@@ -1,13 +1,13 @@
 import { environmentRepository } from '../../database';
-import {
+import { rolesService } from '../roles/roles.service';
+import type {
   CreateEnvironmentParams,
   CreateEnvironmentResult,
   EnvironmentServiceInterface,
   GetEnvironmentListParams,
-  HasAccessParams,
   GetEnvironmentListResultObject,
+  HasAccessParams,
 } from './environment.service.interface';
-import { rolesService } from '../roles/roles.service';
 
 class EnvironmentService implements EnvironmentServiceInterface {
   private repository = environmentRepository;

@@ -1,4 +1,4 @@
-import { ObjectId } from '@i/common.interface';
+import type { ObjectId } from '@i/common.interface';
 
 export interface CreateProjectParams {
   name: string;
@@ -77,6 +77,6 @@ export interface ProjectServiceInterface {
   hasReadAccessToProject(params: HasAccessToProjectParams): Promise<boolean>;
 
   getProjectDataInDetail(
-    params: GetProjectDataInDetailParams
+    params: GetProjectDataInDetailParams,
   ): Promise<GetProjectDataInDetailResult>;
 }

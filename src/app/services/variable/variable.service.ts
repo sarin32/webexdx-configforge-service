@@ -1,7 +1,7 @@
 import { variableRepository } from '../../database';
-import { CreateVariableParams as CreateVariableRepoParams } from '../../database/repository/variable/variable.repository.interface';
+import type { CreateVariableParams as CreateVariableRepoParams } from '../../database/repository/variable/variable.repository.interface';
 import { rolesService } from '../roles/roles.service';
-import {
+import type {
   CreateVariableParams,
   DeleteVariableParams,
   GetVariableListObject,

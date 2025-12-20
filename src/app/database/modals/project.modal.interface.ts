@@ -1,5 +1,5 @@
-import { Document, ObjectId } from 'mongodb';
-import { ProjectAccessLevel } from '../../config';
+import type { Document, ObjectId } from 'mongodb';
+import type { ProjectAccessLevel } from '../../config';
 
 export interface ProjectUser {
   userId: ObjectId;

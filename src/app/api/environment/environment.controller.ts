@@ -1,8 +1,8 @@
-import { Context } from 'koa';
 import { BadRequestError, ForbiddenError } from '@webexdx/koa-wrap/errors';
+import type { Context } from 'koa';
 import { environmentService } from '../../services/environment/environment.service';
-import { validateObject } from '../../utils/schema-validator';
 import { objectId } from '../../utils/data-type-util';
+import { validateObject } from '../../utils/schema-validator';
 import { createEnvironmentSchema } from './environment.schema';
 
 export async function createEnvironment(ctx: Context) {

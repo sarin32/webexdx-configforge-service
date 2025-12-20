@@ -1,4 +1,4 @@
-import { Router, HTTPMethod } from '@webexdx/koa-wrap/server';
+import { HTTPMethod, type Router } from '@webexdx/koa-wrap/server';
 import {
   createProject,
   getProjectDataInDetail,

@@ -1,4 +1,5 @@
-import {
+import { roleModal } from '../../modals';
+import type {
   GetModulePermissionInfoParams,
   GetModulePermissionInfoResult,
   GetRoleInfoParams,
@@ -6,7 +7,6 @@ import {
   ModuleName,
   RoleRepositoryInterface,
 } from './role.repository.interface';
-import { roleModal } from '../../modals';
 
 class RoleRepository implements RoleRepositoryInterface {
   modal = roleModal;

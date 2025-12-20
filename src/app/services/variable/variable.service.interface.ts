@@ -1,5 +1,5 @@
-import { ObjectId } from '@i/common.interface';
-import { GetVariableListObject as GetVariableListRepoObject } from '../../database/repository/variable/variable.repository.interface';
+import type { ObjectId } from '@i/common.interface';
+import type { GetVariableListObject as GetVariableListRepoObject } from '../../database/repository/variable/variable.repository.interface';
 
 export interface CreateVariableParams {
   environmentId: ObjectId;
@@ -36,7 +36,7 @@ export interface VariableServiceInterface {
   createVariable(params: CreateVariableParams): Promise<CreateVariableResponse>;
 
   getVariableList(
-    params: GetVariableListParams
+    params: GetVariableListParams,
   ): Promise<GetVariableListObject[]>;
 
   updateVariable(params: UpdateVariableParams): Promise<void>;

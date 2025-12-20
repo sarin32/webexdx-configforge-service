@@ -1,8 +1,8 @@
-import { Context } from 'koa';
-import { validateObject } from '../../utils/schema-validator';
 import { BadRequestError } from '@webexdx/koa-wrap/errors';
+import type { Context } from 'koa';
 import { variableService } from '../../services/variable/variable.service';
 import { objectId } from '../../utils/data-type-util';
+import { validateObject } from '../../utils/schema-validator';
 import { createVariableSchema, updateVariableSchema } from './variable.schema';
 
 export async function createVariable(ctx: Context) {

@@ -1,6 +1,6 @@
-import { Document, MongoClient } from 'mongodb';
-import { DATABASE_SETTINGS } from '../config/config';
+import { type Document, MongoClient } from 'mongodb';
 import { DATABASE_CONFIG_FORGE } from '../config';
+import { DATABASE_SETTINGS } from '../config/config';
 
 class Connection {
   private readonly client: MongoClient;

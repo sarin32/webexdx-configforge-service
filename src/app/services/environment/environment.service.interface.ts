@@ -1,5 +1,5 @@
-import { ObjectId } from '@i/common.interface';
-import { GetEnvironmentListResultObject as GetEnvironmentListResultRepoObject } from '../../database/repository/environment/environment.repository.interface';
+import type { ObjectId } from '@i/common.interface';
+import type { GetEnvironmentListResultObject as GetEnvironmentListResultRepoObject } from '../../database/repository/environment/environment.repository.interface';
 
 export interface HasAccessParams {
   roleId: ObjectId;
@@ -25,10 +25,10 @@ export interface EnvironmentServiceInterface {
   hasAccessToCreateEnvironment(params: HasAccessParams): Promise<boolean>;
 
   createEnvironment(
-    params: CreateEnvironmentParams
+    params: CreateEnvironmentParams,
   ): Promise<CreateEnvironmentResult>;
 
   getEnvironmentList(
-    params: GetEnvironmentListParams
+    params: GetEnvironmentListParams,
   ): Promise<GetEnvironmentListResultObject[]>;
 }

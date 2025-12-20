@@ -1,14 +1,14 @@
-import {
+import { roleRepository } from '../../database';
+import type { RolePermissions } from '../../database/modals/roles.modal.interface';
+import type {
   GetRoleInfoParams,
   GetRoleInfoResult,
 } from '../../database/repository/role/role.repository.interface';
-import {
+import type {
   GetModulePermissionInfoParams,
   GetModulePermissionInfoResult,
   RoleServiceInterface,
 } from './roles.service.interface';
-import { roleRepository } from '../../database';
-import { RolePermissions } from '../../database/modals/roles.modal.interface';
 
 class RolesService implements RoleServiceInterface {
   repository = roleRepository;

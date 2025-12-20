@@ -1,9 +1,9 @@
-import { Router } from '@webexdx/koa-wrap/server';
+import type { Router } from '@webexdx/koa-wrap/server';
+import { authMiddleware } from '../middlewares/auth.middleware';
 import environmentRoute from './environment/environment.route';
 import projectRoute from './project/project.route';
-import variableRoute from './variable/variable.route';
 import tokenRoute from './tokens/token.route';
-import { authMiddleware } from '../middlewares/auth.middleware';
+import variableRoute from './variable/variable.route';
 
 const router: Router = [
   {

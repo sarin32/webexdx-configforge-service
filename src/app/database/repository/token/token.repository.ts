@@ -1,7 +1,7 @@
-import { ObjectId } from '@i/common.interface';
+import type { ObjectId } from '@i/common.interface';
 import { tokenModal } from '../../modals';
-import { TokenSchema } from '../../modals/token.modal.interface';
-import {
+import type { TokenSchema } from '../../modals/token.modal.interface';
+import type {
   CreateTokenParams,
   TokenRepositoryInterface,
 } from './token.repository.interface';
@@ -39,7 +39,7 @@ class TokenRepository implements TokenRepositoryInterface {
   async revokeToken(tokenId: ObjectId) {
     const response = await this.modal.updateOne(
       { _id: tokenId },
-      { $set: { isActive: false } }
+      { $set: { isActive: false } },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
@@ -54,7 +54,7 @@ class TokenRepository implements TokenRepositoryInterface {
         isActive: true,
         expiresOn: { $gt: new Date() },
       },
-      { projection: { _id: 1 } }
+      { projection: { _id: 1 } },
     );
 
     return tokenData ? true : false;
@@ -79,7 +79,7 @@ class TokenRepository implements TokenRepositoryInterface {
   async updateToken(tokenId: ObjectId, update: Partial<TokenSchema>) {
     const response = await this.modal.updateOne(
       { _id: tokenId },
-      { $set: update }
+      { $set: update },
     );
 
     if (!response.acknowledged || response.modifiedCount !== 1) {
