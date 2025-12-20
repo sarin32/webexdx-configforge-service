@@ -27,4 +27,6 @@ export interface EnvironmentServiceInterface {
   getEnvironmentList(
     params: GetEnvironmentListParams,
   ): Promise<GetEnvironmentListResultObject[]>;
+
+  deleteProjectEnvironments(params: GetEnvironmentListParams): Promise<void>;
 }

@@ -40,4 +40,5 @@ export interface VariableServiceInterface {
 
   deleteVariable(params: DeleteVariableParams): Promise<void>;
 
+  deleteEnvironmentVariables(params: { environmentId: ObjectId }): Promise<void>;
 }

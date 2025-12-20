@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { variableModal } from '../../modals';
 import type { VariableSchema } from '../../modals/variable.modal.interface';
 import type {
@@ -72,6 +73,14 @@ class VariableRepository implements VariableRepositoryInterface {
     if (!response.acknowledged || response.deletedCount !== 1) {
       throw new Error('Failed to delete variable data');
     }
+  }
+
+  async deleteEnvironmentVariables({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<void> {
+    await this.modal.deleteMany({ environmentId });
   }
 }
 

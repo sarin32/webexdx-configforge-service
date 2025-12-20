@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { ProjectAccessLevel } from '../../config';
 import { projectRepository } from '../../database';
 import { environmentService } from '../environment/environment.service';
@@ -116,6 +117,24 @@ class ProjectService implements ProjectServiceInterface {
     }
 
     return result;
+  }
+
+  async deleteProject({ projectId }: { projectId: ObjectId }): Promise<void> {
+    // 1. Get all environments for this project
+    const environments = await environmentService.getEnvironmentList({
+      projectId,
+    });
+
+    // 2. For each environment, delete its variables
+    for (const env of environments) {
+      await variableService.deleteEnvironmentVariables({ environmentId: env._id });
+    }
+
+    // 3. Delete all environments
+    await environmentService.deleteProjectEnvironments({ projectId });
+
+    // 4. Finally delete the project
+    await this.repository.deleteProject({ projectId });
   }
 }
 

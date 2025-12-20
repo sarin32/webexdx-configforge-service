@@ -66,4 +66,6 @@ export interface ProjectRepositoryInterface {
   getAccessLevelToProject(
     params: GetAccessLevelToProjectParams,
   ): Promise<GetAccessLevelToProjectResult>;
+
+  deleteProject(params: GetProjectParams): Promise<void>;
 }

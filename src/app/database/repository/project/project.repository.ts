@@ -118,6 +118,14 @@ class ProjectRepository implements ProjectRepositoryInterface {
       return elem.userId.toString() === userId.toString();
     })?.accessLevel;
   }
+
+  async deleteProject({ projectId }: GetProjectParams): Promise<void> {
+    const response = await this.modal.deleteOne({ _id: projectId });
+
+    if (!response.acknowledged || response.deletedCount !== 1) {
+      throw new Error('Failed to delete project data');
+    }
+  }
 }
 
 export const projectRepository = new ProjectRepository();

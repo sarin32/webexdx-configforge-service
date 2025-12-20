@@ -32,6 +32,12 @@ class EnvironmentRepository implements EnvironmentRepositoryInterface {
     const environments = await this.modal.find({ projectId }).toArray();
     return environments;
   }
+
+  async deleteProjectEnvironments({
+    projectId,
+  }: GetEnvironmentListParams): Promise<void> {
+    await this.modal.deleteMany({ projectId });
+  }
 }
 
 export const environmentRepository = new EnvironmentRepository();

@@ -69,3 +69,22 @@ export async function getProjectDataInDetail(ctx: Context) {
     projectId: objectId(id),
   });
 }
+
+export async function deleteProject(ctx: Context) {
+  const { id } = ctx.params;
+  const { userId } = ctx.state.user;
+
+  if (
+    !(await projectService.hasEditAccessToProject({
+      projectId: objectId(id),
+      userId,
+    }))
+  )
+    throw new ForbiddenError('You dont have the access to this project');
+
+  await projectService.deleteProject({
+    projectId: objectId(id),
+  });
+
+  ctx.status = 204;
+}

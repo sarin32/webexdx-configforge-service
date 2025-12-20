@@ -20,4 +20,6 @@ export interface EnvironmentRepositoryInterface {
   getEnvironmentList(
     params: GetEnvironmentListParams,
   ): Promise<GetEnvironmentListResultObject[]>;
+
+  deleteProjectEnvironments(params: GetEnvironmentListParams): Promise<void>;
 }

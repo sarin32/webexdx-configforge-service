@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { variableRepository } from '../../database';
 import type { CreateVariableParams as CreateVariableRepoParams } from '../../database/repository/variable/variable.repository.interface';
 import type {
@@ -49,6 +50,14 @@ class VariableService implements VariableServiceInterface {
 
   async deleteVariable({ variableId }: DeleteVariableParams): Promise<void> {
     await this.repository.deleteVariable({ variableId });
+  }
+
+  async deleteEnvironmentVariables({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<void> {
+    await this.repository.deleteEnvironmentVariables({ environmentId });
   }
 }
 

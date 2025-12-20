@@ -30,6 +30,12 @@ class EnvironmentService implements EnvironmentServiceInterface {
   }: GetEnvironmentListParams): Promise<GetEnvironmentListResultObject[]> {
     return await this.repository.getEnvironmentList({ projectId });
   }
+
+  async deleteProjectEnvironments({
+    projectId,
+  }: GetEnvironmentListParams): Promise<void> {
+    await this.repository.deleteProjectEnvironments({ projectId });
+  }
 }
 
 export const environmentService = new EnvironmentService();

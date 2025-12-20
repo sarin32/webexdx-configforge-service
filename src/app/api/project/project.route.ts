@@ -4,6 +4,7 @@ import {
   getProjectDataInDetail,
   getProjectlist,
   updateProjectDetails,
+  deleteProject,
 } from './project.controller';
 
 const router: Router = [
@@ -26,6 +27,11 @@ const router: Router = [
     method: HTTPMethod.GET,
     path: '/:id',
     handler: getProjectDataInDetail,
+  },
+  {
+    method: HTTPMethod.DELETE,
+    path: '/:id',
+    handler: deleteProject,
   },
 ];
 
