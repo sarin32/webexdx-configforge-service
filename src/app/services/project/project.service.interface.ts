@@ -25,9 +25,6 @@ export interface ProjectInfo {
   name: string;
 }
 
-export interface HasAccessParams {
-  roleId: ObjectId;
-}
 
 export interface HasAccessToProjectParams {
   projectId: ObjectId;
@@ -68,9 +65,6 @@ export interface ProjectServiceInterface {
 
   updateProject(params: UpdateProjectParams): Promise<void>;
 
-  hasAccessToCreateProject(params: HasAccessParams): Promise<boolean>;
-
-  hasAccessToReadProject(params: HasAccessParams): Promise<boolean>;
 
   hasEditAccessToProject(params: HasAccessToProjectParams): Promise<boolean>;
 

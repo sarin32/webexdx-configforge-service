@@ -8,17 +8,17 @@ import {
 const router: Router = [
   {
     method: HTTPMethod.POST,
-    path: '/create',
+    path: '/',
     handler: createVariable,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/update',
+    method: HTTPMethod.PUT,
+    path: '/:id',
     handler: updateVariable,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/delete',
+    method: HTTPMethod.DELETE,
+    path: '/:id',
     handler: deleteVariable,
   },
 ];

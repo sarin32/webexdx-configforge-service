@@ -4,7 +4,7 @@ import { createEnvironment } from './environment.controller';
 const router: Router = [
   {
     method: HTTPMethod.POST,
-    path: '/create',
+    path: '/',
     handler: createEnvironment,
   },
 ];

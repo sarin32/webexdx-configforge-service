@@ -1,9 +1,6 @@
 import type { ObjectId } from '@i/common.interface';
 import type { GetEnvironmentListResultObject as GetEnvironmentListResultRepoObject } from '../../database/repository/environment/environment.repository.interface';
 
-export interface HasAccessParams {
-  roleId: ObjectId;
-}
 
 export interface CreateEnvironmentParams {
   name: string;
@@ -22,7 +19,6 @@ export interface GetEnvironmentListParams {
 export type GetEnvironmentListResultObject = GetEnvironmentListResultRepoObject;
 
 export interface EnvironmentServiceInterface {
-  hasAccessToCreateEnvironment(params: HasAccessParams): Promise<boolean>;
 
   createEnvironment(
     params: CreateEnvironmentParams,

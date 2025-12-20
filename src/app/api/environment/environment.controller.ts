@@ -11,11 +11,8 @@ export async function createEnvironment(ctx: Context) {
     projectId: string;
   }>(createEnvironmentSchema, ctx.request.body);
 
-  const { userId, roleId } = ctx.state.user;
+  const { userId } = ctx.state.user;
 
-  if (!environmentService.hasAccessToCreateEnvironment({ roleId })) {
-    throw new ForbiddenError("You don't have the acces to create environment");
-  }
 
   if (error) throw new BadRequestError(error.message);
 

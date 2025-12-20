@@ -19,10 +19,7 @@ export async function createToken(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToCreateToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to create token');
+  const { userId } = ctx.state.user;
 
   const { name, environmentId, expiresInDays } = value;
 
@@ -36,10 +33,7 @@ export async function createToken(ctx: Context) {
 
 export async function getToken(ctx: Context) {
   const { id } = ctx.params;
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToReadToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to read token');
+  const { userId } = ctx.state.user;
 
   if (
     !(await tokenService.hasReadAccessToToken({
@@ -63,10 +57,7 @@ export async function getEnvironmentTokens(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToReadToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to read tokens');
+  const { userId } = ctx.state.user;
 
   const { environmentId } = value;
 
@@ -84,10 +75,7 @@ export async function getUserTokens(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToReadToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to read tokens');
+  const { userId } = ctx.state.user;
 
   const { userId: targetUserId } = value;
 
@@ -107,10 +95,7 @@ export async function updateToken(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToUpdateToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to update token');
+  const { userId } = ctx.state.user;
 
   if (
     !(await tokenService.hasUpdateAccessToToken({
@@ -133,10 +118,7 @@ export async function updateToken(ctx: Context) {
 
 export async function deleteToken(ctx: Context) {
   const { id } = ctx.params;
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToDeleteToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to delete token');
+  const { userId } = ctx.state.user;
 
   if (
     !(await tokenService.hasDeleteAccessToToken({
@@ -154,10 +136,7 @@ export async function deleteToken(ctx: Context) {
 
 export async function deactivateToken(ctx: Context) {
   const { id } = ctx.params;
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToUpdateToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to deactivate token');
+  const { userId } = ctx.state.user;
 
   if (
     !(await tokenService.hasUpdateAccessToToken({
@@ -181,10 +160,7 @@ export async function getActiveTokens(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await tokenService.hasAccessToReadToken({ roleId })))
-    throw new ForbiddenError('You dont have the access to read tokens');
+  const { userId } = ctx.state.user;
 
   const { environmentId } = value;
 

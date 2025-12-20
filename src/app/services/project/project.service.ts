@@ -1,7 +1,6 @@
 import { ProjectAccessLevel } from '../../config';
 import { projectRepository } from '../../database';
 import { environmentService } from '../environment/environment.service';
-import { rolesService } from '../roles/roles.service';
 import { variableService } from '../variable/variable.service';
 import type {
   CreateProjectParams,
@@ -9,7 +8,6 @@ import type {
   GetProjectDataInDetailResult,
   GetProjectListResult,
   GetProjectParams,
-  HasAccessParams,
   HasAccessToProjectParams,
   ProjectServiceInterface,
   UpdateProjectParams,
@@ -18,23 +16,6 @@ import type {
 class ProjectService implements ProjectServiceInterface {
   private readonly repository = projectRepository;
 
-  async hasAccessToCreateProject({
-    roleId,
-  }: HasAccessParams): Promise<boolean> {
-    const respose = await rolesService.getModuleRoleInfo({
-      roleId,
-      module: 'projects',
-    });
-    return respose?.write || false;
-  }
-
-  async hasAccessToReadProject({ roleId }: HasAccessParams): Promise<boolean> {
-    const respose = await rolesService.getModuleRoleInfo({
-      roleId,
-      module: 'projects',
-    });
-    return respose?.read || false;
-  }
 
   async hasEditAccessToProject({
     projectId,

@@ -13,25 +13,6 @@ class TokenService {
     return await this.repository.revokeToken(tokenId);
   }
 
-  async hasAccessToCreateToken({ roleId }: { roleId: string }) {
-    // TODO: Implement role-based access control
-    return true;
-  }
-
-  async hasAccessToReadToken({ roleId }: { roleId: string }) {
-    // TODO: Implement role-based access control
-    return true;
-  }
-
-  async hasAccessToUpdateToken({ roleId }: { roleId: string }) {
-    // TODO: Implement role-based access control
-    return true;
-  }
-
-  async hasAccessToDeleteToken({ roleId }: { roleId: string }) {
-    // TODO: Implement role-based access control
-    return true;
-  }
 
   async hasReadAccessToToken({
     tokenId,

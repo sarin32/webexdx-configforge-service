@@ -9,22 +9,22 @@ import {
 const router: Router = [
   {
     method: HTTPMethod.POST,
-    path: '/create',
+    path: '/',
     handler: createProject,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/edit',
+    method: HTTPMethod.PUT,
+    path: '/:id',
     handler: updateProjectDetails,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/getList',
+    method: HTTPMethod.GET,
+    path: '/',
     handler: getProjectlist,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/getDataInDetail',
+    method: HTTPMethod.GET,
+    path: '/:id',
     handler: getProjectDataInDetail,
   },
 ];

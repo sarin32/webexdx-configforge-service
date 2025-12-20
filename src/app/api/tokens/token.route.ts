@@ -13,42 +13,42 @@ import {
 const router: Router = [
   {
     method: HTTPMethod.POST,
-    path: '/create',
+    path: '/',
     handler: createToken,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/get',
+    method: HTTPMethod.GET,
+    path: '/:id',
     handler: getToken,
   },
   {
     method: HTTPMethod.POST,
-    path: '/getEnvironmentTokens',
+    path: '/environment-tokens',
     handler: getEnvironmentTokens,
   },
   {
     method: HTTPMethod.POST,
-    path: '/getUserTokens',
+    path: '/user-tokens',
     handler: getUserTokens,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/update',
+    method: HTTPMethod.PUT,
+    path: '/:id',
     handler: updateToken,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/delete',
+    method: HTTPMethod.DELETE,
+    path: '/:id',
     handler: deleteToken,
   },
   {
-    method: HTTPMethod.POST,
-    path: '/deactivate',
+    method: HTTPMethod.PUT,
+    path: '/:id/deactivate',
     handler: deactivateToken,
   },
   {
     method: HTTPMethod.POST,
-    path: '/getActiveTokens',
+    path: '/active-tokens',
     handler: getActiveTokens,
   },
 ];

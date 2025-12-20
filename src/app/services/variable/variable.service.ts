@@ -1,12 +1,10 @@
 import { variableRepository } from '../../database';
 import type { CreateVariableParams as CreateVariableRepoParams } from '../../database/repository/variable/variable.repository.interface';
-import { rolesService } from '../roles/roles.service';
 import type {
   CreateVariableParams,
   DeleteVariableParams,
   GetVariableListObject,
   GetVariableListParams,
-  HasAccessParams,
   UpdateVariableParams,
   VariableServiceInterface,
 } from './variable.service.interface';
@@ -14,23 +12,6 @@ import type {
 class VariableService implements VariableServiceInterface {
   private readonly repository = variableRepository;
 
-  async hasWriteAccessToVariables({
-    roleId,
-  }: HasAccessParams): Promise<boolean> {
-    return (
-      (await rolesService.getModuleRoleInfo({ roleId, module: 'variables' }))
-        ?.write || false
-    );
-  }
-
-  async hasDeleteAccessToVariables({
-    roleId,
-  }: HasAccessParams): Promise<boolean> {
-    return (
-      (await rolesService.getModuleRoleInfo({ roleId, module: 'variables' }))
-        ?.delete || false
-    );
-  }
 
   async createVariable({
     environmentId,

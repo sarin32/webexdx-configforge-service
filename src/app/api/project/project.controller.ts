@@ -13,10 +13,7 @@ export async function createProject(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await projectService.hasAccessToCreateProject({ roleId })))
-    throw new ForbiddenError('You dont have the access to create project ');
+  const { userId } = ctx.state.user;
 
   const { name } = value;
 
@@ -24,10 +21,7 @@ export async function createProject(ctx: Context) {
 }
 
 export async function getProjectlist(ctx: Context) {
-  const { userId, roleId } = ctx.state.user;
-
-  // if (!(await projectService.hasAccessToReadProject({ roleId })))
-  //   throw new ForbiddenError('You dont have the access to read project ');
+  const { userId } = ctx.state.user;
 
   ctx.body = await projectService.getProjectList({ userId });
 }
@@ -40,10 +34,7 @@ export async function updateProjectDetails(ctx: Context) {
 
   if (error) throw new BadRequestError(error.message);
 
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await projectService.hasAccessToCreateProject({ roleId })))
-    throw new ForbiddenError('You dont have the access to update projects');
+  const { userId } = ctx.state.user;
 
   if (
     !(await projectService.hasEditAccessToProject({
@@ -63,10 +54,7 @@ export async function updateProjectDetails(ctx: Context) {
 
 export async function getProjectDataInDetail(ctx: Context) {
   const { id } = ctx.params;
-  const { userId, roleId } = ctx.state.user;
-
-  if (!(await projectService.hasAccessToReadProject({ roleId })))
-    throw new ForbiddenError('You dont have the access to read projects');
+  const { userId } = ctx.state.user;
 
   if (
     !(await projectService.hasReadAccessToProject({
