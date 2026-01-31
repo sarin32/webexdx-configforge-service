@@ -136,6 +136,10 @@ class ProjectService implements ProjectServiceInterface {
     // 4. Finally delete the project
     await this.repository.deleteProject({ projectId });
   }
+
+  async updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void> {
+    await this.repository.updateEnvironmentCount(projectId, increment);
+  }
 }
 
 export const projectService = new ProjectService();

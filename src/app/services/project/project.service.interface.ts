@@ -73,4 +73,6 @@ export interface ProjectServiceInterface {
   getProjectDataInDetail(
     params: GetProjectDataInDetailParams,
   ): Promise<GetProjectDataInDetailResult>;
+
+  updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void>;
 }

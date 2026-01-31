@@ -1,4 +1,5 @@
-import type { ObjectId, WithId } from 'mongodb';
+import type { WithId } from 'mongodb';
+import type { ObjectId } from '@i/common.interface';
 import type { ProjectAccessLevel } from '../../../config';
 import type { ProjectSchema } from '../../modals/project.modal.interface';
 
@@ -68,4 +69,5 @@ export interface ProjectRepositoryInterface {
   ): Promise<GetAccessLevelToProjectResult>;
 
   deleteProject(params: GetProjectParams): Promise<void>;
+  updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void>;
 }

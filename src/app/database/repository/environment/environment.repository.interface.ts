@@ -21,5 +21,11 @@ export interface EnvironmentRepositoryInterface {
     params: GetEnvironmentListParams,
   ): Promise<GetEnvironmentListResultObject[]>;
 
+  getEnvironment(params: { environmentId: ObjectId }): Promise<GetEnvironmentListResultObject | null>;
+
+  deleteEnvironment(params: { environmentId: ObjectId }): Promise<void>;
+
+  updateEnvironment(environmentId: ObjectId, data: { name?: string }): Promise<void>;
+
   deleteProjectEnvironments(params: GetEnvironmentListParams): Promise<void>;
 }

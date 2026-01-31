@@ -1,3 +1,4 @@
+import type { ObjectId } from '@i/common.interface';
 import { ProjectAccessLevel } from '../../../config';
 import { projectModal } from '../../modals';
 import type { ProjectUser } from '../../modals/project.modal.interface';
@@ -124,6 +125,17 @@ class ProjectRepository implements ProjectRepositoryInterface {
 
     if (!response.acknowledged || response.deletedCount !== 1) {
       throw new Error('Failed to delete project data');
+    }
+  }
+
+  async updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void> {
+    const response = await this.modal.updateOne(
+      { _id: projectId },
+      { $inc: { environmentCount: increment } },
+    );
+
+    if (!response.acknowledged || (response.modifiedCount !== 1 && response.matchedCount !== 1)) {
+      throw new Error('Failed to update project environment count');
     }
   }
 }
