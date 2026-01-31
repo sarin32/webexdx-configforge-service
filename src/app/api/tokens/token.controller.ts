@@ -14,7 +14,7 @@ export async function createToken(ctx: Context) {
   const { error, value } = validateObject<{
     name: string;
     environmentId: string;
-    expiresInDays?: string;
+    expiresInDays?: string | number;
   }>(createTokenSchema, ctx.request.body);
 
   if (error) throw new BadRequestError(error.message);
@@ -27,7 +27,7 @@ export async function createToken(ctx: Context) {
     userId,
     name,
     environmentId: objectId(environmentId),
-    expiresInDays: expiresInDays ? parseInt(expiresInDays) : undefined,
+    expiresInDays: expiresInDays ? parseInt(expiresInDays.toString()) : undefined,
   });
 }
 
@@ -89,8 +89,8 @@ export async function updateToken(ctx: Context) {
   const { id } = ctx.params;
   const { error, value } = validateObject<{
     name?: string;
-    isActive?: string;
-    expiresInDays?: string;
+    isActive?: string | boolean;
+    expiresInDays?: string | number;
   }>(updateTokenSchema, ctx.request.body);
 
   if (error) throw new BadRequestError(error.message);
@@ -111,8 +111,8 @@ export async function updateToken(ctx: Context) {
     userId,
     tokenId: objectId(id),
     name,
-    isActive: isActive === 'true',
-    expiresInDays: expiresInDays ? parseInt(expiresInDays) : undefined,
+    isActive: typeof isActive === 'boolean' ? isActive : isActive === 'true',
+    expiresInDays: expiresInDays ? parseInt(expiresInDays.toString()) : undefined,
   });
 }
 

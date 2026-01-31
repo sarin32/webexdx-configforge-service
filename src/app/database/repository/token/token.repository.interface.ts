@@ -10,7 +10,7 @@ export interface CreateTokenParams {
 }
 
 export interface TokenRepositoryInterface {
-  createToken(params: CreateTokenParams): Promise<{ projectId: ObjectId }>;
+  createToken(params: CreateTokenParams): Promise<{ tokenId: ObjectId }>;
 
   revokeToken(tokenId: ObjectId): Promise<void>;
 

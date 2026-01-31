@@ -33,7 +33,7 @@ class TokenRepository implements TokenRepositoryInterface {
       throw new Error('Failed to insert token data');
     }
 
-    return { projectId: response.insertedId };
+    return { tokenId: response.insertedId };
   }
 
   async revokeToken(tokenId: ObjectId) {

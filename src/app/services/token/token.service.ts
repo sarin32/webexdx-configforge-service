@@ -47,6 +47,11 @@ class TokenService {
     return true;
   }
 
+  private maskToken(token: string): string {
+    if (token.length <= 8) return '****';
+    return `${token.substring(0, 4)}...${token.substring(token.length - 4)}`;
+  }
+
   async createToken({
     userId,
     name,
@@ -62,17 +67,23 @@ class TokenService {
     const expiresOn = new Date();
     expiresOn.setDate(expiresOn.getDate() + (expiresInDays || 30));
 
-    return await this.repository.createToken({
+    await this.repository.createToken({
       name,
       token,
       environmentId,
       userId: new ObjectId(userId),
       expiresOn,
     });
+
+    return { token }; // Return the full token only once
   }
 
   async getToken({ userId, tokenId }: { userId: string; tokenId: ObjectId }) {
-    return await this.repository.getToken(tokenId);
+    const tokenData = await this.repository.getToken(tokenId);
+    if (tokenData) {
+      tokenData.token = this.maskToken(tokenData.token);
+    }
+    return tokenData;
   }
 
   async getEnvironmentTokens({
@@ -82,7 +93,11 @@ class TokenService {
     userId: string;
     environmentId: ObjectId;
   }) {
-    return await this.repository.getEnvironmentTokens(environmentId);
+    const tokens = await this.repository.getEnvironmentTokens(environmentId);
+    return tokens.map(t => ({
+      ...t,
+      token: this.maskToken(t.token),
+    }));
   }
 
   async getUserTokens({
@@ -92,7 +107,11 @@ class TokenService {
     userId: string;
     targetUserId: ObjectId;
   }) {
-    return await this.repository.getUserTokens(targetUserId);
+    const tokens = await this.repository.getUserTokens(targetUserId);
+    return tokens.map(t => ({
+      ...t,
+      token: this.maskToken(t.token),
+    }));
   }
 
   async updateToken({
@@ -147,7 +166,11 @@ class TokenService {
     userId: string;
     environmentId: ObjectId;
   }) {
-    return await this.repository.getActiveTokens(environmentId);
+    const tokens = await this.repository.getActiveTokens(environmentId);
+    return tokens.map(t => ({
+      ...t,
+      token: this.maskToken(t.token),
+    }));
   }
 }
 
