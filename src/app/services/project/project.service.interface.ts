@@ -25,7 +25,6 @@ export interface ProjectInfo {
   name: string;
 }
 
-
 export interface HasAccessToProjectParams {
   projectId: ObjectId;
   userId: ObjectId;
@@ -64,7 +63,6 @@ export interface ProjectServiceInterface {
   // addProjectUser(params: AddProjectUserParams): Promise<void>;
 
   updateProject(params: UpdateProjectParams): Promise<void>;
-
 
   hasEditAccessToProject(params: HasAccessToProjectParams): Promise<boolean>;
 

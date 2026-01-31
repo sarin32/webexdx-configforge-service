@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import type { ObjectId } from 'mongodb';
 import { variableModal } from '../../modals';
 import type { VariableSchema } from '../../modals/variable.modal.interface';
 import type {

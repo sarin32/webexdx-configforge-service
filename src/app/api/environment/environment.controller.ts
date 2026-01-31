@@ -4,7 +4,10 @@ import { environmentService } from '../../services/environment/environment.servi
 import { projectService } from '../../services/project/project.service';
 import { objectId } from '../../utils/data-type-util';
 import { validateObject } from '../../utils/schema-validator';
-import { createEnvironmentSchema, updateEnvironmentSchema } from './environment.schema';
+import {
+  createEnvironmentSchema,
+  updateEnvironmentSchema,
+} from './environment.schema';
 
 export async function createEnvironment(ctx: Context) {
   const { error, value } = validateObject<{
@@ -13,7 +16,6 @@ export async function createEnvironment(ctx: Context) {
   }>(createEnvironmentSchema, ctx.request.body);
 
   const { userId } = ctx.state.user;
-
 
   if (error) throw new BadRequestError(error.message);
 
@@ -50,7 +52,9 @@ export async function updateEnvironment(ctx: Context) {
   const envId = objectId(id);
 
   // 1. Fetch environment to get projectId
-  const environment = await environmentService.getEnvironment({ environmentId: envId });
+  const environment = await environmentService.getEnvironment({
+    environmentId: envId,
+  });
   if (!environment) {
     throw new BadRequestError('Environment not found');
   }
@@ -77,7 +81,9 @@ export async function deleteEnvironment(ctx: Context) {
   const envId = objectId(id);
 
   // 1. Fetch the environment to get projectId
-  const environment = await environmentService.getEnvironment({ environmentId: envId });
+  const environment = await environmentService.getEnvironment({
+    environmentId: envId,
+  });
   if (!environment) {
     throw new BadRequestError('Environment not found');
   }

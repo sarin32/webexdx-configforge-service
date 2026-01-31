@@ -1,5 +1,5 @@
-import type { WithId } from 'mongodb';
 import type { ObjectId } from '@i/common.interface';
+import type { WithId } from 'mongodb';
 import type { ProjectAccessLevel } from '../../../config';
 import type { ProjectSchema } from '../../modals/project.modal.interface';
 

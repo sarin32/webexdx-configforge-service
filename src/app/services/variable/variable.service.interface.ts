@@ -25,7 +25,6 @@ export interface UpdateVariableParams {
   value?: string;
 }
 
-
 export interface DeleteVariableParams {
   variableId: ObjectId;
 }
@@ -40,5 +39,7 @@ export interface VariableServiceInterface {
 
   deleteVariable(params: DeleteVariableParams): Promise<void>;
 
-  deleteEnvironmentVariables(params: { environmentId: ObjectId }): Promise<void>;
+  deleteEnvironmentVariables(params: {
+    environmentId: ObjectId;
+  }): Promise<void>;
 }

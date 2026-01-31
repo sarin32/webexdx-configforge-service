@@ -27,7 +27,9 @@ export async function createToken(ctx: Context) {
     userId,
     name,
     environmentId: objectId(environmentId),
-    expiresInDays: expiresInDays ? parseInt(expiresInDays.toString()) : undefined,
+    expiresInDays: expiresInDays
+      ? parseInt(expiresInDays.toString())
+      : undefined,
   });
 }
 
@@ -112,7 +114,9 @@ export async function updateToken(ctx: Context) {
     tokenId: objectId(id),
     name,
     isActive: typeof isActive === 'boolean' ? isActive : isActive === 'true',
-    expiresInDays: expiresInDays ? parseInt(expiresInDays.toString()) : undefined,
+    expiresInDays: expiresInDays
+      ? parseInt(expiresInDays.toString())
+      : undefined,
   });
 }
 

@@ -1,5 +1,9 @@
 import { HTTPMethod, type Router } from '@webexdx/koa-wrap/server';
-import { createEnvironment, deleteEnvironment, updateEnvironment } from './environment.controller';
+import {
+  createEnvironment,
+  deleteEnvironment,
+  updateEnvironment,
+} from './environment.controller';
 
 const router: Router = [
   {

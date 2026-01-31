@@ -1,6 +1,6 @@
+import type { ObjectId } from '@i/common.interface';
 import { environmentRepository } from '../../database';
 import { variableService } from '../variable/variable.service';
-import type { ObjectId } from '@i/common.interface';
 import type {
   CreateEnvironmentParams,
   CreateEnvironmentResult,
@@ -11,7 +11,6 @@ import type {
 
 class EnvironmentService implements EnvironmentServiceInterface {
   private repository = environmentRepository;
-
 
   async createEnvironment({
     name,
@@ -33,11 +32,19 @@ class EnvironmentService implements EnvironmentServiceInterface {
     return await this.repository.getEnvironmentList({ projectId });
   }
 
-  async getEnvironment({ environmentId }: { environmentId: ObjectId }): Promise<GetEnvironmentListResultObject | null> {
+  async getEnvironment({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<GetEnvironmentListResultObject | null> {
     return await this.repository.getEnvironment({ environmentId });
   }
 
-  async deleteEnvironment({ environmentId }: { environmentId: ObjectId }): Promise<void> {
+  async deleteEnvironment({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<void> {
     // 1. Delete associated variables
     await variableService.deleteEnvironmentVariables({ environmentId });
 
@@ -45,7 +52,10 @@ class EnvironmentService implements EnvironmentServiceInterface {
     await this.repository.deleteEnvironment({ environmentId });
   }
 
-  async updateEnvironment(environmentId: ObjectId, data: { name?: string }): Promise<void> {
+  async updateEnvironment(
+    environmentId: ObjectId,
+    data: { name?: string },
+  ): Promise<void> {
     await this.repository.updateEnvironment(environmentId, data);
   }
 

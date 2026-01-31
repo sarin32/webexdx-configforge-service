@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import type { ObjectId } from 'mongodb';
 import { ProjectAccessLevel } from '../../config';
 import { projectRepository } from '../../database';
 import { environmentService } from '../environment/environment.service';
@@ -16,7 +16,6 @@ import type {
 
 class ProjectService implements ProjectServiceInterface {
   private readonly repository = projectRepository;
-
 
   async hasEditAccessToProject({
     projectId,
@@ -127,7 +126,9 @@ class ProjectService implements ProjectServiceInterface {
 
     // 2. For each environment, delete its variables
     for (const env of environments) {
-      await variableService.deleteEnvironmentVariables({ environmentId: env._id });
+      await variableService.deleteEnvironmentVariables({
+        environmentId: env._id,
+      });
     }
 
     // 3. Delete all environments
@@ -137,7 +138,10 @@ class ProjectService implements ProjectServiceInterface {
     await this.repository.deleteProject({ projectId });
   }
 
-  async updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void> {
+  async updateEnvironmentCount(
+    projectId: ObjectId,
+    increment: number,
+  ): Promise<void> {
     await this.repository.updateEnvironmentCount(projectId, increment);
   }
 }

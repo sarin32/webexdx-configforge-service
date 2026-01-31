@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import type { ObjectId } from 'mongodb';
 import { environmentModal } from '../../modals';
 import type {
   CreateEnvironmentParams,
@@ -34,24 +34,38 @@ class EnvironmentRepository implements EnvironmentRepositoryInterface {
     return environments;
   }
 
-  async getEnvironment({ environmentId }: { environmentId: ObjectId }): Promise<GetEnvironmentListResultObject | null> {
+  async getEnvironment({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<GetEnvironmentListResultObject | null> {
     return await this.modal.findOne({ _id: environmentId });
   }
 
-  async deleteEnvironment({ environmentId }: { environmentId: ObjectId }): Promise<void> {
+  async deleteEnvironment({
+    environmentId,
+  }: {
+    environmentId: ObjectId;
+  }): Promise<void> {
     const response = await this.modal.deleteOne({ _id: environmentId });
     if (!response.acknowledged || response.deletedCount !== 1) {
       throw new Error('Failed to delete environment data');
     }
   }
 
-  async updateEnvironment(environmentId: ObjectId, data: { name?: string }): Promise<void> {
+  async updateEnvironment(
+    environmentId: ObjectId,
+    data: { name?: string },
+  ): Promise<void> {
     const response = await this.modal.updateOne(
       { _id: environmentId },
       { $set: data },
     );
 
-    if (!response.acknowledged || (response.modifiedCount !== 1 && response.matchedCount !== 1)) {
+    if (
+      !response.acknowledged ||
+      (response.modifiedCount !== 1 && response.matchedCount !== 1)
+    ) {
       throw new Error('Failed to update environment data');
     }
   }

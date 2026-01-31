@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import type { ObjectId } from 'mongodb';
 import { variableRepository } from '../../database';
 import type { CreateVariableParams as CreateVariableRepoParams } from '../../database/repository/variable/variable.repository.interface';
 import type {
@@ -12,7 +12,6 @@ import type {
 
 class VariableService implements VariableServiceInterface {
   private readonly repository = variableRepository;
-
 
   async createVariable({
     environmentId,

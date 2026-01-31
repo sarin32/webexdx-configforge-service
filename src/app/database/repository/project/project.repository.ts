@@ -128,13 +128,19 @@ class ProjectRepository implements ProjectRepositoryInterface {
     }
   }
 
-  async updateEnvironmentCount(projectId: ObjectId, increment: number): Promise<void> {
+  async updateEnvironmentCount(
+    projectId: ObjectId,
+    increment: number,
+  ): Promise<void> {
     const response = await this.modal.updateOne(
       { _id: projectId },
       { $inc: { environmentCount: increment } },
     );
 
-    if (!response.acknowledged || (response.modifiedCount !== 1 && response.matchedCount !== 1)) {
+    if (
+      !response.acknowledged ||
+      (response.modifiedCount !== 1 && response.matchedCount !== 1)
+    ) {
       throw new Error('Failed to update project environment count');
     }
   }

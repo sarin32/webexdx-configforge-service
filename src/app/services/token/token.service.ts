@@ -13,7 +13,6 @@ class TokenService {
     return await this.repository.revokeToken(tokenId);
   }
 
-
   async hasReadAccessToToken({
     tokenId,
     userId,
@@ -94,7 +93,7 @@ class TokenService {
     environmentId: ObjectId;
   }) {
     const tokens = await this.repository.getEnvironmentTokens(environmentId);
-    return tokens.map(t => ({
+    return tokens.map((t) => ({
       ...t,
       token: this.maskToken(t.token),
     }));
@@ -108,7 +107,7 @@ class TokenService {
     targetUserId: ObjectId;
   }) {
     const tokens = await this.repository.getUserTokens(targetUserId);
-    return tokens.map(t => ({
+    return tokens.map((t) => ({
       ...t,
       token: this.maskToken(t.token),
     }));
@@ -167,7 +166,7 @@ class TokenService {
     environmentId: ObjectId;
   }) {
     const tokens = await this.repository.getActiveTokens(environmentId);
-    return tokens.map(t => ({
+    return tokens.map((t) => ({
       ...t,
       token: this.maskToken(t.token),
     }));
