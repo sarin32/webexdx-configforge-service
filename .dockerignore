@@ -1,15 +1,13 @@
-node_modules
-build
-dist
+# Ignore Git-related files
 .git
 .gitignore
-.dockerignore
-.env
-npm-debug.log
-pnpm-debug.log
-yarn-debug.log
-yarn-error.log
+.github
+# Ignore Biome and Markdown files
+.biome.json
+*.md
+# Ignore IDE and build-related files`
 .vscode
-.idea
-.antigravityignore
+# Ignore dependencies and build outputs
+node_modules
+build
 logs
