@@ -1,5 +1,6 @@
 import { bodyParser } from '@koa/bodyparser';
 import cors from '@koa/cors';
+import { requestId } from '@webexdx/koa-wrap/middlewares';
 import { Server } from '@webexdx/koa-wrap/server';
 import router from '../api';
 import { PORT } from '../config/config';
@@ -13,11 +14,13 @@ const corsMiddleware = cors({
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 const bodyparserMiddleware = bodyParser();
+const requestIdMiddleware = requestId({ logger });
 
 const server = new Server({
   port: PORT,
   routes: router,
   middlewares: [
+    requestIdMiddleware,
     httpLoggerMiddleware,
     corsMiddleware,
     bodyparserMiddleware,

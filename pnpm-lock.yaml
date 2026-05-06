@@ -18,8 +18,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       '@webexdx/koa-wrap':
-        specifier: ^1.5.1
-        version: 1.5.1
+        specifier: ^2.0.0
+        version: 2.0.0
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -53,12 +53,6 @@ importers:
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
-      winston:
-        specifier: ^3.18.3
-        version: 3.19.0
-      winston-daily-rotate-file:
-        specifier: ^5.0.0
-        version: 5.0.0(winston@3.19.0)
     devDependencies:
       '@types/bcrypt':
         specifier: ^5.0.2
@@ -909,8 +903,8 @@ packages:
   '@types/yargs@17.0.35':
     resolution: {integrity: sha512-qUHkeCyQFxMXg79wQfTtfndEC+N9ZZg76HJftDJp+qH2tV7Gj4OJi7l+PiWwJ+pWtW8GwSmqsDj/oymhrTWXjg==}
 
-  '@webexdx/koa-wrap@1.5.1':
-    resolution: {integrity: sha512-3n2gbOTR/4QPb9c1nuog8s4VR2Zt+nQd/GjWBDGRxWdsYvY3yYaTWVEEk6D0kt74qiGCdv2k/68dk5TdVI3PhA==}
+  '@webexdx/koa-wrap@2.0.0':
+    resolution: {integrity: sha512-y6Ky6aiowPJhEAOQ71F5YpKLCJhLpKCkINwCh2i15N513c5DGkdDfwe6oQs+jKuTBVnz5eeeg6/+kULjcxpD4Q==}
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -1914,7 +1908,6 @@ packages:
   keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
@@ -4183,11 +4176,13 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@webexdx/koa-wrap@1.5.1':
+  '@webexdx/koa-wrap@2.0.0':
     dependencies:
       jsonwebtoken: 9.0.3
       koa: 2.16.3
       koa-router: 13.1.1
+      winston: 3.19.0
+      winston-daily-rotate-file: 5.0.0(winston@3.19.0)
     transitivePeerDependencies:
       - supports-color
 
